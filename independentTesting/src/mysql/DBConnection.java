@@ -1,18 +1,12 @@
-package com.mckeown.utils;
+package mysql;
 
 import java.sql.Connection;
-
-import org.apache.tomcat.jdbc.pool.DataSource;
-import org.apache.tomcat.jdbc.pool.PoolProperties;
-
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
-import org.apache.catalina.Context;
 
 public class DBConnection {
 
@@ -34,43 +28,17 @@ public class DBConnection {
     }
     
     
-    public String addUser(String userName,String password, int age, String email, String phoneNbr, String firstName, String lastName)
+    public boolean addUser(String userName,String password, int age, String email, String phoneNbr, String firstName, String lastName)
     {
-
-    	String userID = "0";
-    	try
-    	{
-
-    		
-    		Class.forName(DRIVER_CLASS);  // register the driver
-      		String dbURL = DRIVER+DB;
-      		System.out.println("Attempting connection");
-      		conn = DriverManager.getConnection(dbURL,USER,PWD);
-      		System.out.println("Connection successfully made");
-	    	String query ="SELECT UserID FROM `Users` WHERE UserName= ? and Password = ?";
-	        PreparedStatement pstmt=conn.prepareStatement(query);
-	        pstmt.clearParameters(); 
-	        pstmt.setString(1,userName);
-			pstmt.setString(2,password);
-			ResultSet result = pstmt.executeQuery();
-			while(result.next())
-			{
-				userID=result.getString("UserID");
-			}
-    	}catch(Exception e)
-    	{
-    		e.printStackTrace();
-    	}
-    	
-    	if(userID.equals("0"))
+    	if(login(userName,password).equals("0"))
     	{
 	    	try
 	    	{
 	    		Class.forName(DRIVER_CLASS);
 	      		String dbURL = DRIVER+DB;
-	      		//System.out.println("Attempting connection");
-	      		//conn = DriverManager.getConnection(dbURL,USER,PWD);
-	      		//System.out.println("Connection successfully made");
+	      		System.out.println("Attempting connection");
+	      		conn = DriverManager.getConnection(dbURL,USER,PWD);
+	      		System.out.println("Connection successfully made");
 		    	String query ="INSERT INTO `Users`( `UserName`, `Password`) VALUES (?,?)";
 		        PreparedStatement pstmt=conn.prepareStatement(query);
 		        pstmt.clearParameters(); 
@@ -84,7 +52,7 @@ public class DBConnection {
 		        pstmt.setString(1,userName);
 				pstmt.setString(2,password);
 				ResultSet result = pstmt.executeQuery();
-				userID = "0";
+				String userID = "0";
 				while(result.next())
 				{
 					userID=result.getString("UserID");
@@ -105,12 +73,12 @@ public class DBConnection {
 	    	}catch(Exception e)
 	    	{
 	    		e.printStackTrace();
-	    		return "0";
+	    		return false;
 	    	}
-	    	return userID;
+	    	return true;
     	}
     	else
-    		return "0";
+    		return false;
     }
     public String login(String userName, String password)
     {
@@ -189,36 +157,4 @@ public class DBConnection {
     		return false;
     	}
     }
-
-
-	public Boolean deleteUser(int userID) 
-	{
-		try{
-			Class.forName(DRIVER_CLASS);
-			String dbURL = DRIVER+DB;
-			System.out.println("Attempting connection");
-      		conn = DriverManager.getConnection(dbURL,USER,PWD);
-      		System.out.println("Connection successfully made");
-      		
-      		String query ="DELETE FROM `UserInfo` WHERE userID = ?";
-	        PreparedStatement pstmt=conn.prepareStatement(query);
-	        pstmt.clearParameters(); 
-	        pstmt.setString(1,userID+"");
-	        pstmt.execute();
-	        
-	        query ="DELETE FROM `Users` WHERE UserID = ?";
-	        pstmt=conn.prepareStatement(query);
-	        pstmt.clearParameters(); 
-	        pstmt.setString(1,userID+"");
-	        pstmt.execute();
-	        conn.close();
-			
-		}catch(Exception e)
-		{
-			e.printStackTrace();
-			return false;
-		}
-		return true;
-	}
-
 }

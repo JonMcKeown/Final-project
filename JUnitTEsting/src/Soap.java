@@ -1,7 +1,12 @@
 
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import javax.swing.text.html.HTMLDocument.RunElement;
 import javax.xml.soap.MessageFactory;
 import javax.xml.soap.MimeHeaders;
+import javax.xml.soap.Node;
 import javax.xml.soap.SOAPBody;
 import javax.xml.soap.SOAPConnection;
 import javax.xml.soap.SOAPConnectionFactory;
@@ -10,17 +15,20 @@ import javax.xml.soap.SOAPEnvelope;
 import javax.xml.soap.SOAPMessage;
 import javax.xml.soap.SOAPPart;
 
+import com.sun.xml.internal.messaging.saaj.soap.impl.TextImpl;
+
 public class Soap {
-	public Soap()
+	String url;
+	public Soap(String url)
 	{
-		
+		this.url= url;
 	}
 
-	public void createLoginRequest(String userName, String password)
+	public int createLoginRequest(String userName, String password)
 			throws Exception {
 		MessageFactory messageFactory = MessageFactory.newInstance();
-		SOAPMessage soapMessage = messageFactory.createMessage();
-		SOAPPart soapPart = soapMessage.getSOAPPart();
+		SOAPMessage SOAPMessage = messageFactory.createMessage();
+		SOAPPart soapPart = SOAPMessage.getSOAPPart();
 
 		String serverURI = "http://options.mckeown.com";
 
@@ -38,28 +46,35 @@ public class Soap {
 				"opt");
 		soapBodyElem2.addTextNode(password);
 
-		MimeHeaders headers = soapMessage.getMimeHeaders();
+		MimeHeaders headers = SOAPMessage.getMimeHeaders();
 		headers.addHeader("SOAPAction", serverURI + "Login");
 
-		soapMessage.saveChanges();
+		SOAPMessage.saveChanges();
 
-		System.out.print("Request SOAP Message:");
-		soapMessage.writeTo(System.out);
-		System.out.println();
-		String url = "http://localhost:8080/AndroidServer/services/Login";
+		String url = this.url+"Login";
 		SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory
 				.newInstance();
 		SOAPConnection soapConnection = soapConnectionFactory
 				.createConnection();
-		soapConnection.call(soapMessage, url);
+		SOAPMessage response = soapConnection.call(SOAPMessage, url);
+		//response.writeTo(System.out);
+		SOAPBody body= response.getSOAPBody();  
+        SOAPElement element = (SOAPElement) body.getChildElements().next(); 
+        SOAPElement element2 = (SOAPElement) element.getChildElements().next(); 
+        TextImpl e = (TextImpl) element2.getChildElements().next(); 
+        return Integer.parseInt(e.getData());
+
+		
+
+		
 	}
 
-	public void createEditAcctRequest(int age, String email, String firstName,
+	public boolean createEditAcctRequest(int age, String email, String firstName,
 			String lastName, int userID, String phoneNbr) throws Exception {
 
 		MessageFactory messageFactory = MessageFactory.newInstance();
-		SOAPMessage soapMessage = messageFactory.createMessage();
-		SOAPPart soapPart = soapMessage.getSOAPPart();
+		SOAPMessage SOAPMessage = messageFactory.createMessage();
+		SOAPPart soapPart = SOAPMessage.getSOAPPart();
 
 		String serverURI = "http://options.mckeown.com";
 
@@ -90,29 +105,34 @@ public class Soap {
 				"jaxb");
 		soapBodyElem7.addTextNode(userID + "");
 
-		MimeHeaders headers = soapMessage.getMimeHeaders();
+		MimeHeaders headers = SOAPMessage.getMimeHeaders();
 		headers.addHeader("SOAPAction", serverURI + "UpdateUser");
 		headers.addHeader("SOAPAction", "http://jaxb.mckeown.com"
 				+ "UpdateUser");
 
-		soapMessage.saveChanges();
+		SOAPMessage.saveChanges();
 
-		String url = "http://localhost:8080/AndroidServer/services/UpdateUser";
+		String url = this.url+"UpdateUser";
 		SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory
 				.newInstance();
 		SOAPConnection soapConnection = soapConnectionFactory
 				.createConnection();
-		soapConnection.call(soapMessage, url);
-
+		SOAPMessage response = soapConnection.call(SOAPMessage, url);
+		
+		SOAPBody body= response.getSOAPBody();  
+        SOAPElement element = (SOAPElement) body.getChildElements().next(); 
+        SOAPElement element2 = (SOAPElement) element.getChildElements().next(); 
+        TextImpl e = (TextImpl) element2.getChildElements().next(); 
+        return e.getData().toLowerCase().equals("true");
 	}
 
-	public void createCreateUserRequest(int age, String email,
+	public int createCreateUserRequest(int age, String email,
 			String firstName, String lastName, String userName,
 			String password, String phoneNbr) throws Exception {
 
 		MessageFactory messageFactory = MessageFactory.newInstance();
-		SOAPMessage soapMessage = messageFactory.createMessage();
-		SOAPPart soapPart = soapMessage.getSOAPPart();
+		SOAPMessage SOAPMessage = messageFactory.createMessage();
+		SOAPPart soapPart = SOAPMessage.getSOAPPart();
 
 		String serverURI = "http://options.mckeown.com";
 
@@ -145,24 +165,30 @@ public class Soap {
 				"opt");
 		soapBodyElem8.addTextNode(lastName);
 
-		MimeHeaders headers = soapMessage.getMimeHeaders();
+		MimeHeaders headers = SOAPMessage.getMimeHeaders();
 		headers.addHeader("SOAPAction", serverURI + "UpdateUser");
 
-		soapMessage.saveChanges();
+		SOAPMessage.saveChanges();
 
-		String url = "http://localhost:8080/AndroidServer/services/CreateUser";
+		String url = this.url+"CreateUser";
 		SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory
 				.newInstance();
 		SOAPConnection soapConnection = soapConnectionFactory
 				.createConnection();
-		soapConnection.call(soapMessage, url);
+		SOAPMessage response = soapConnection.call(SOAPMessage, url);
+		
+		SOAPBody body= response.getSOAPBody();  
+        SOAPElement element = (SOAPElement) body.getChildElements().next(); 
+        SOAPElement element2 = (SOAPElement) element.getChildElements().next(); 
+        TextImpl e = (TextImpl) element2.getChildElements().next(); 
+        return Integer.parseInt(e.getData());
 
 	}
 
-	public void createGetUserDataRequest(int userID) throws Exception {
+	public User createGetUserDataRequest(int userID) throws Exception {
 		MessageFactory messageFactory = MessageFactory.newInstance();
-		SOAPMessage soapMessage = messageFactory.createMessage();
-		SOAPPart soapPart = soapMessage.getSOAPPart();
+		SOAPMessage SOAPMessage = messageFactory.createMessage();
+		SOAPPart soapPart = SOAPMessage.getSOAPPart();
 
 		String serverURI = "http://options.mckeown.com";
 
@@ -176,23 +202,42 @@ public class Soap {
 				"opt");
 		soapBodyElem1.addTextNode(userID + "");
 
-		MimeHeaders headers = soapMessage.getMimeHeaders();
+		MimeHeaders headers = SOAPMessage.getMimeHeaders();
 		headers.addHeader("SOAPAction", serverURI + "GetUserData");
 
-		soapMessage.saveChanges();
+		SOAPMessage.saveChanges();
 
-		String url = "http://localhost:8080/AndroidServer/services/GetUserData";
+		String url = this.url+"GetUserData";
 		SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory
 				.newInstance();
 		SOAPConnection soapConnection = soapConnectionFactory
 				.createConnection();
-		soapConnection.call(soapMessage, url);
+		SOAPMessage response = soapConnection.call(SOAPMessage, url);
+		
+		SOAPBody body= response.getSOAPBody();  
+        SOAPElement element = (SOAPElement) body.getChildElements().next(); 
+        SOAPElement element2 = (SOAPElement) element.getChildElements().next(); 
+        SOAPElement element3 = (SOAPElement) element.getChildElements().next();
+        ArrayList<String> a = new ArrayList<String>();
+        Iterator i = element3.getChildElements();
+        User user;
+    	String age = ((TextImpl) ((SOAPElement)i.next()).getChildElements().next()).getData();
+    	String email = ((TextImpl) ((SOAPElement)i.next()).getChildElements().next()).getData();
+    	String first = ((TextImpl) ((SOAPElement)i.next()).getChildElements().next()).getData();
+    	String last = ((TextImpl) ((SOAPElement)i.next()).getChildElements().next()).getData();
+    	String phone = ((TextImpl) ((SOAPElement)i.next()).getChildElements().next()).getData();
+    	String userid =((TextImpl) ((SOAPElement)i.next()).getChildElements().next()).getData();
+    	user = new User(userID, Integer.parseInt(age), email, phone, first, last);
+    	//a.add(i.next().toString());
+        //TextImpl e = (TextImpl) element2.getChildElements().next(); 
+        return user;
+
 	}
 
-	public void createDeleteUSerRequest(int userID) throws Exception {
+	public boolean createDeleteUserRequest(int userID) throws Exception {
 		MessageFactory messageFactory = MessageFactory.newInstance();
-		SOAPMessage soapMessage = messageFactory.createMessage();
-		SOAPPart soapPart = soapMessage.getSOAPPart();
+		SOAPMessage SOAPMessage = messageFactory.createMessage();
+		SOAPPart soapPart = SOAPMessage.getSOAPPart();
 
 		String serverURI = "http://options.mckeown.com";
 
@@ -207,17 +252,23 @@ public class Soap {
 				"opt");
 		soapBodyElem1.addTextNode(userID + "");
 
-		MimeHeaders headers = soapMessage.getMimeHeaders();
+		MimeHeaders headers = SOAPMessage.getMimeHeaders();
 		headers.addHeader("SOAPAction", serverURI + "deleteUser");
 
-		soapMessage.saveChanges();
+		SOAPMessage.saveChanges();
 
-		String url = "http://localhost:8080/AndroidServer/services/DeleteUser";
+		String url = this.url+"DeleteUser";
 		SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory
 				.newInstance();
 		SOAPConnection soapConnection = soapConnectionFactory
 				.createConnection();
-		soapConnection.call(soapMessage, url);
+		SOAPMessage response = soapConnection.call(SOAPMessage, url);
+		
+		SOAPBody body= response.getSOAPBody();  
+        SOAPElement element = (SOAPElement) body.getChildElements().next(); 
+        SOAPElement element2 = (SOAPElement) element.getChildElements().next(); 
+        TextImpl e = (TextImpl) element2.getChildElements().next(); 
+        return e.getData().toLowerCase().equals("true");
 	}
 
 }

@@ -8,31 +8,30 @@ import com.mckeown.utils.DBConnection;
 import com.mckeown.utils.User;
 
 public class GetUserData {
-	
-	public EditAcct getData(int userID) throws Exception
-	{
+
+	public EditAcct getData(int userID) throws Exception {
 		DBConnection db = new DBConnection();
-		String phoneNbr = "";
-		String email= "";
-		int age= 0;
-		String firstName= "";
-		String lastName= "";
-		ResultSet result = db.getUserData(userID);
-		String ID= "";
-		while(result.next())
-		{
-			try{
+		String phoneNbr = "0";
+		String email = "-";
+		int age = 0;
+		String firstName = "0";
+		String lastName = "0";
+		ResultSet result;
+		try {
+			result = db.getUserData(userID);
+
+			String ID = "0";
+			while (result.next()) {
 				userID = Integer.parseInt(result.getString("UserID"));
 				phoneNbr = result.getString("phoneNbr");
 				email = result.getString("email");
 				age = Integer.parseInt(result.getString("age"));
 				firstName = result.getString("firstName");
 				lastName = result.getString("LastName");
+
 			}
-			catch(Exception e)
-			{
-				
-			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		ObjectFactory o = new ObjectFactory();
 		EditAcct e = o.createEditAcct();
@@ -43,7 +42,7 @@ public class GetUserData {
 		e.setPhoneNbr(phoneNbr);
 		e.setUserID(userID);
 		return e;
-		
+
 	}
 
 }

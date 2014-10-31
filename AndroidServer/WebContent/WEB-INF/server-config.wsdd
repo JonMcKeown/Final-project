@@ -7,8 +7,8 @@
   <ns1:parameter name="dotNetSoapEncFix" value="true"/>
   <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
   <ns1:parameter name="sendXMLDeclaration" value="true"/>
-  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
   <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
   <ns1:requestFlow>
    <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
     <ns1:parameter name="scope" value="session"/>
@@ -28,11 +28,11 @@
    <ns2:parameter qname="ns1:password" type="xsd:string"/>
   </ns2:operation>
   <ns1:parameter name="allowedMethods" value="login"/>
-  <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="Login"/>
-  <ns1:parameter name="className" value="com.mckeown.options.Login"/>
-  <ns1:parameter name="wsdlServicePort" value="Login"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="schemaQualified" value="http://options.mckeown.com"/>
+  <ns1:parameter name="wsdlServicePort" value="Login"/>
+  <ns1:parameter name="className" value="com.mckeown.options.Login"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://options.mckeown.com"/>
   <ns1:parameter name="wsdlServiceElement" value="LoginService"/>
  </ns1:service>
@@ -52,9 +52,9 @@
   <ns1:parameter name="className" value="com.mckeown.options.CreateUser"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="allowedMethods" value="createUser"/>
-  <ns1:parameter name="wsdlTargetNamespace" value="http://options.mckeown.com"/>
-  <ns1:parameter name="wsdlServiceElement" value="CreateUserService"/>
   <ns1:parameter name="wsdlPortType" value="CreateUser"/>
+  <ns1:parameter name="wsdlServiceElement" value="CreateUserService"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://options.mckeown.com"/>
   <ns1:parameter name="sendXsiTypes" value="false"/>
  </ns1:service>
  <ns1:service name="GetUserData" provider="java:RPC" style="wrapped" use="literal">
@@ -62,11 +62,11 @@
    <ns1:parameter qname="ns3:userID" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
   <ns1:parameter name="allowedMethods" value="getData"/>
-  <ns1:parameter name="wsdlPortType" value="GetUserData"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
-  <ns1:parameter name="schemaQualified" value="http://options.mckeown.com,http://jaxb.mckeown.com"/>
-  <ns1:parameter name="wsdlServicePort" value="GetUserData"/>
+  <ns1:parameter name="wsdlPortType" value="GetUserData"/>
   <ns1:parameter name="className" value="com.mckeown.options.GetUserData"/>
+  <ns1:parameter name="wsdlServicePort" value="GetUserData"/>
+  <ns1:parameter name="schemaQualified" value="http://options.mckeown.com,http://jaxb.mckeown.com"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://options.mckeown.com"/>
   <ns1:parameter name="wsdlServiceElement" value="GetUserDataService"/>
   <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns5:EditAcct" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.mckeown.jaxb.EditAcct" xmlns:ns5="http://jaxb.mckeown.com"/>
@@ -101,11 +101,11 @@
    <ns1:parameter qname="ns8:password" type="xsd:string"/>
   </ns1:operation>
   <ns1:parameter name="allowedMethods" value="addUser close"/>
-  <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="DBConnection"/>
-  <ns1:parameter name="className" value="com.mckeown.utils.DBConnection"/>
-  <ns1:parameter name="wsdlServicePort" value="DBConnection"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="schemaQualified" value="http://utils.mckeown.com"/>
+  <ns1:parameter name="wsdlServicePort" value="DBConnection"/>
+  <ns1:parameter name="className" value="com.mckeown.utils.DBConnection"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://utils.mckeown.com"/>
   <ns1:parameter name="wsdlServiceElement" value="DBConnectionService"/>
  </ns1:service>
@@ -114,11 +114,11 @@
    <ns1:parameter qname="ns9:acct" type="ns10:EditAcct" xmlns:ns10="http://jaxb.mckeown.com"/>
   </ns1:operation>
   <ns1:parameter name="allowedMethods" value="update"/>
-  <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="UpdateUser"/>
-  <ns1:parameter name="className" value="com.mckeown.options.UpdateUser"/>
-  <ns1:parameter name="wsdlServicePort" value="UpdateUser"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="schemaQualified" value="http://options.mckeown.com,http://jaxb.mckeown.com"/>
+  <ns1:parameter name="wsdlServicePort" value="UpdateUser"/>
+  <ns1:parameter name="className" value="com.mckeown.options.UpdateUser"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://options.mckeown.com"/>
   <ns1:parameter name="wsdlServiceElement" value="UpdateUserService"/>
   <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns11:EditAcct" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.mckeown.jaxb.EditAcct" xmlns:ns11="http://jaxb.mckeown.com"/>

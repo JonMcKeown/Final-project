@@ -20,12 +20,16 @@ public class DBConnection {
 	private static Statement statement = null;
 	private static PreparedStatement preparedStatement = null;
 	private static ResultSet resultSet = null;
-    private static final String USER="root";
-    private static final String PWD="597623"; 
+    private static final String USER="admin3lsQIWE";
+    private static final String PWD="wtbmj9Qt9RWG"; 
     private static final String DB="mckeoj18";
     private static final String DRIVER=
         "jdbc:mysql://localhost/";
     private static final String DRIVER_CLASS="com.mysql.jdbc.Driver";
+    private String host = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
+    private String port = System.getenv("OPENSHIFT_MYSQL_DB_PORT");
+
+    String url = "jdbc:mysql://"+host+":"+port+"/mckeoj18";
     private Connection conn;
     
     public DBConnection(){
@@ -43,7 +47,7 @@ public class DBConnection {
 
     		
     		Class.forName(DRIVER_CLASS);  // register the driver
-      		String dbURL = DRIVER+DB;
+      		String dbURL = url;
       		System.out.println("Attempting connection");
       		conn = DriverManager.getConnection(dbURL,USER,PWD);
       		System.out.println("Connection successfully made");
@@ -67,7 +71,7 @@ public class DBConnection {
 	    	try
 	    	{
 	    		Class.forName(DRIVER_CLASS);
-	      		String dbURL = DRIVER+DB;
+	      		String dbURL = url;
 	      		//System.out.println("Attempting connection");
 	      		//conn = DriverManager.getConnection(dbURL,USER,PWD);
 	      		//System.out.println("Connection successfully made");
@@ -118,7 +122,7 @@ public class DBConnection {
     	try
     	{
     		Class.forName(DRIVER_CLASS);  // register the driver
-      		String dbURL = DRIVER+DB;
+      		String dbURL = url;
       		System.out.println("Attempting connection");
       		conn = DriverManager.getConnection(dbURL,USER,PWD);
       		System.out.println("Connection successfully made");
@@ -146,7 +150,7 @@ public class DBConnection {
     	try
     	{
     		Class.forName(DRIVER_CLASS);  // register the driver
-      		String dbURL = DRIVER+DB;
+      		String dbURL = url;
       		System.out.println("Attempting connection");
       		conn = DriverManager.getConnection(dbURL,USER,PWD);
       		System.out.println("Connection successfully made");
@@ -167,7 +171,7 @@ public class DBConnection {
     {//UPDATE `UserInfo` SET `age`=23,`email`='jon@gmail.com',`phoneNbr`='2628257935',`firstName`='Jon',`LastName`='McKeown' WHERE userID='9'
     	try{
     		Class.forName(DRIVER_CLASS);
-      		String dbURL = DRIVER+DB;
+      		String dbURL = url;
       		System.out.println("Attempting connection");
       		conn = DriverManager.getConnection(dbURL,USER,PWD);
       		System.out.println("Connection successfully made");
@@ -195,7 +199,7 @@ public class DBConnection {
 	{
 		try{
 			Class.forName(DRIVER_CLASS);
-			String dbURL = DRIVER+DB;
+			String dbURL = url;
 			System.out.println("Attempting connection");
       		conn = DriverManager.getConnection(dbURL,USER,PWD);
       		System.out.println("Connection successfully made");

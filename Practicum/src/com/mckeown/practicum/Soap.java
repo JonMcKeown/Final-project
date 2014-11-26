@@ -3,30 +3,14 @@ package com.mckeown.practicum;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import javax.xml.soap.MessageFactory;
-import javax.xml.soap.MimeHeaders;
-import javax.xml.soap.SOAPBody;
-import javax.xml.soap.SOAPConnection;
-import javax.xml.soap.SOAPConnectionFactory;
-import javax.xml.soap.SOAPElement;
-import javax.xml.soap.SOAPEnvelope;
-import javax.xml.soap.SOAPMessage;
-import javax.xml.soap.SOAPPart;
-
-import com.sun.xml.messaging.saaj.soap.impl.TextImpl;
-
-
-
-
-
 
 
 
 public class Soap {
 	String url;
-	public Soap(String url)
-	{
-		this.url= url;
+
+	public Soap(String url) {
+		this.url = url;
 	}
 
 	public int createLoginRequest(String userName, String password)
@@ -56,26 +40,24 @@ public class Soap {
 
 		SOAPMessage.saveChanges();
 
-		String url = this.url+"Login";
+		String url = this.url + "Login";
 		SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory
 				.newInstance();
 		SOAPConnection soapConnection = soapConnectionFactory
 				.createConnection();
 		SOAPMessage response = soapConnection.call(SOAPMessage, url);
-		//response.writeTo(System.out);
-		SOAPBody body= response.getSOAPBody();  
-        SOAPElement element = (SOAPElement) body.getChildElements().next(); 
-        SOAPElement element2 = (SOAPElement) element.getChildElements().next(); 
-        TextImpl e = (TextImpl) element2.getChildElements().next(); 
-        return Integer.parseInt(e.getData());
+		// response.writeTo(System.out);
+		SOAPBody body = response.getSOAPBody();
+		SOAPElement element = (SOAPElement) body.getChildElements().next();
+		SOAPElement element2 = (SOAPElement) element.getChildElements().next();
+		TextImpl e = (TextImpl) element2.getChildElements().next();
+		return Integer.parseInt(e.getData());
 
-		
-
-		
 	}
 
-	public boolean createEditAcctRequest(int age, String email, String firstName,
-			String lastName, int userID, String phoneNbr) throws Exception {
+	public boolean createEditAcctRequest(int age, String email,
+			String firstName, String lastName, int userID, String phoneNbr)
+			throws Exception {
 
 		MessageFactory messageFactory = MessageFactory.newInstance();
 		SOAPMessage SOAPMessage = messageFactory.createMessage();
@@ -117,23 +99,23 @@ public class Soap {
 
 		SOAPMessage.saveChanges();
 
-		String url = this.url+"UpdateUser";
+		String url = this.url + "UpdateUser";
 		SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory
 				.newInstance();
 		SOAPConnection soapConnection = soapConnectionFactory
 				.createConnection();
 		SOAPMessage response = soapConnection.call(SOAPMessage, url);
-		
-		SOAPBody body= response.getSOAPBody();  
-        SOAPElement element = (SOAPElement) body.getChildElements().next(); 
-        SOAPElement element2 = (SOAPElement) element.getChildElements().next(); 
-        TextImpl e = (TextImpl) element2.getChildElements().next(); 
-        return e.getData().toLowerCase().equals("true");
+
+		SOAPBody body = response.getSOAPBody();
+		SOAPElement element = (SOAPElement) body.getChildElements().next();
+		SOAPElement element2 = (SOAPElement) element.getChildElements().next();
+		TextImpl e = (TextImpl) element2.getChildElements().next();
+		return e.getData().toLowerCase().equals("true");
 	}
 
-	public int createCreateUserRequest(int age, String email,
-			String firstName, String lastName, String userName,
-			String password, String phoneNbr) throws Exception {
+	public int createCreateUserRequest(int age, String email, String firstName,
+			String lastName, String userName, String password, String phoneNbr)
+			throws Exception {
 
 		MessageFactory messageFactory = MessageFactory.newInstance();
 		SOAPMessage SOAPMessage = messageFactory.createMessage();
@@ -175,18 +157,18 @@ public class Soap {
 
 		SOAPMessage.saveChanges();
 
-		String url = this.url+"CreateUser";
+		String url = this.url + "CreateUser";
 		SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory
 				.newInstance();
 		SOAPConnection soapConnection = soapConnectionFactory
 				.createConnection();
 		SOAPMessage response = soapConnection.call(SOAPMessage, url);
-		
-		SOAPBody body= response.getSOAPBody();  
-        SOAPElement element = (SOAPElement) body.getChildElements().next(); 
-        SOAPElement element2 = (SOAPElement) element.getChildElements().next(); 
-        TextImpl e = (TextImpl) element2.getChildElements().next(); 
-        return Integer.parseInt(e.getData());
+
+		SOAPBody body = response.getSOAPBody();
+		SOAPElement element = (SOAPElement) body.getChildElements().next();
+		SOAPElement element2 = (SOAPElement) element.getChildElements().next();
+		TextImpl e = (TextImpl) element2.getChildElements().next();
+		return Integer.parseInt(e.getData());
 
 	}
 
@@ -212,30 +194,37 @@ public class Soap {
 
 		SOAPMessage.saveChanges();
 
-		String url = this.url+"GetUserData";
+		String url = this.url + "GetUserData";
 		SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory
 				.newInstance();
 		SOAPConnection soapConnection = soapConnectionFactory
 				.createConnection();
 		SOAPMessage response = soapConnection.call(SOAPMessage, url);
-		
-		SOAPBody body= response.getSOAPBody();  
-        SOAPElement element = (SOAPElement) body.getChildElements().next(); 
-        SOAPElement element2 = (SOAPElement) element.getChildElements().next(); 
-        SOAPElement element3 = (SOAPElement) element.getChildElements().next();
-        ArrayList<String> a = new ArrayList<String>();
-        Iterator i = element3.getChildElements();
-        User user;
-    	String age = ((TextImpl) ((SOAPElement)i.next()).getChildElements().next()).getData();
-    	String email = ((TextImpl) ((SOAPElement)i.next()).getChildElements().next()).getData();
-    	String first = ((TextImpl) ((SOAPElement)i.next()).getChildElements().next()).getData();
-    	String last = ((TextImpl) ((SOAPElement)i.next()).getChildElements().next()).getData();
-    	String phone = ((TextImpl) ((SOAPElement)i.next()).getChildElements().next()).getData();
-    	String userid =((TextImpl) ((SOAPElement)i.next()).getChildElements().next()).getData();
-    	user = new User(userID, Integer.parseInt(age), email, phone, first, last);
-    	//a.add(i.next().toString());
-        //TextImpl e = (TextImpl) element2.getChildElements().next(); 
-        return user;
+
+		SOAPBody body = response.getSOAPBody();
+		SOAPElement element = (SOAPElement) body.getChildElements().next();
+		SOAPElement element2 = (SOAPElement) element.getChildElements().next();
+		SOAPElement element3 = (SOAPElement) element.getChildElements().next();
+		ArrayList<String> a = new ArrayList<String>();
+		Iterator i = element3.getChildElements();
+		User user;
+		String age = ((TextImpl) ((SOAPElement) i.next()).getChildElements()
+				.next()).getData();
+		String email = ((TextImpl) ((SOAPElement) i.next()).getChildElements()
+				.next()).getData();
+		String first = ((TextImpl) ((SOAPElement) i.next()).getChildElements()
+				.next()).getData();
+		String last = ((TextImpl) ((SOAPElement) i.next()).getChildElements()
+				.next()).getData();
+		String phone = ((TextImpl) ((SOAPElement) i.next()).getChildElements()
+				.next()).getData();
+		String userid = ((TextImpl) ((SOAPElement) i.next()).getChildElements()
+				.next()).getData();
+		user = new User(userID, Integer.parseInt(age), email, phone, first,
+				last);
+		// a.add(i.next().toString());
+		// TextImpl e = (TextImpl) element2.getChildElements().next();
+		return user;
 
 	}
 
@@ -262,18 +251,18 @@ public class Soap {
 
 		SOAPMessage.saveChanges();
 
-		String url = this.url+"DeleteUser";
+		String url = this.url + "DeleteUser";
 		SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory
 				.newInstance();
 		SOAPConnection soapConnection = soapConnectionFactory
 				.createConnection();
 		SOAPMessage response = soapConnection.call(SOAPMessage, url);
-		
-		SOAPBody body= response.getSOAPBody();  
-        SOAPElement element = (SOAPElement) body.getChildElements().next(); 
-        SOAPElement element2 = (SOAPElement) element.getChildElements().next(); 
-        TextImpl e = (TextImpl) element2.getChildElements().next(); 
-        return e.getData().toLowerCase().equals("true");
+
+		SOAPBody body = response.getSOAPBody();
+		SOAPElement element = (SOAPElement) body.getChildElements().next();
+		SOAPElement element2 = (SOAPElement) element.getChildElements().next();
+		TextImpl e = (TextImpl) element2.getChildElements().next();
+		return e.getData().toLowerCase().equals("true");
 	}
 
 }

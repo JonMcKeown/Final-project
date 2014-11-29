@@ -1,7 +1,9 @@
-package com.mckeown.practicum;
+package mysql;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+
+import com.mckeown.practicum.User;
 
 
 

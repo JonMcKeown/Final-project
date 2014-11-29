@@ -7,6 +7,8 @@
 
 package com.mckeown.practicum;
 
+import android.view.View;
+
 public final class R {
     public static final class attr {
     }

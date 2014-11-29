@@ -7,5 +7,7 @@
     <string name="loginButton">Login</string>
     <string name="userNameField">User Name</string>
     <string name="password">password</string>
+    <string name="title_activity_create_acct">CreateAcctActivity</string>
+    <string name="title_activity_edit_acct">EditAcctActivity</string>
 
 </resources>

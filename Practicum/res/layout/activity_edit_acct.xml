@@ -6,11 +6,68 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.mckeown.practicum.EditAcctActivity" >
+    tools:context="com.mckeown.practicum.CreateAcctActivity" >
 
-    <TextView
+    <EditText
+        android:id="@+id/editAge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:text="@string/editAge" />
+
+    <EditText
+        android:id="@+id/editEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editAge"
+        android:layout_below="@+id/editAge"
+        android:ems="10"
+        android:text="@string/editEmail" />
+
+    <EditText
+        android:id="@+id/editPhoneNbr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editEmail"
+        android:layout_below="@+id/editEmail"
+        android:ems="10"
+        android:text="@string/editPhoneNbr" />
+
+    <EditText
+        android:id="@+id/editFirst"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editPhoneNbr"
+        android:layout_below="@+id/editPhoneNbr"
+        android:ems="10"
+        android:text="@string/editFirst" />
+
+    <EditText
+        android:id="@+id/editLast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editFirst"
+        android:layout_below="@+id/editFirst"
+        android:ems="10"
+        android:text="@string/editLast" />
+
+    <Button
+        android:id="@+id/deleteUserButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/editLast"
+        android:layout_marginLeft="17dp"
+        android:text="@string/deleteUser" />
+
+    <Button
+        android:id="@+id/updateUserButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editLast"
+        android:layout_marginLeft="18dp"
+        android:layout_toRightOf="@+id/deleteUserButton"
+        android:text="@string/updateUser" />
 
 </RelativeLayout>

@@ -8,4 +8,80 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.mckeown.practicum.CreateAcctActivity" >
 
+    <EditText
+        android:id="@+id/createUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:text="@string/createUserName" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/createPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/createUserName"
+        android:layout_below="@+id/createUserName"
+        android:ems="10"
+        android:text="@string/createPassword" />
+
+    <EditText
+        android:id="@+id/createAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/createPassword"
+        android:layout_below="@+id/createPassword"
+        android:ems="10"
+        android:text="@string/createAge" />
+
+    <Button
+        android:id="@+id/createUserButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="27dp"
+        android:layout_marginRight="37dp"
+        android:text="@string/createNewUserButton" />
+
+    <EditText
+        android:id="@+id/createFirst"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/createAge"
+        android:layout_below="@+id/createAge"
+        android:ems="10"
+        android:text="@string/createFirst" />
+
+    <EditText
+        android:id="@+id/createLast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/createFirst"
+        android:layout_below="@+id/createFirst"
+        android:ems="10"
+        android:text="@string/createLast" />
+
+    <EditText
+        android:id="@+id/createPhoneNbr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/createLast"
+        android:layout_below="@+id/createLast"
+        android:ems="10"
+        android:text="@string/createPhoneNbr" />
+
+    <EditText
+        android:id="@+id/createEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/createPhoneNbr"
+        android:layout_below="@+id/createPhoneNbr"
+        android:ems="10"
+        android:text="@string/createEmail" />
+
 </RelativeLayout>

@@ -24,8 +24,6 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-	
-		
 		final Button loginButton = (Button) findViewById(R.id.loginButton);
         loginButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -37,8 +35,18 @@ public class MainActivity extends Activity {
                 	try{
                 		LoginRequest login = new LoginRequest();
                 		String r = login.execute(userName.getText().toString(),pass.getText().toString()).get();
-                    	Toast.makeText(getApplicationContext(),r,Toast.LENGTH_SHORT).show();
-                		
+                    	id = r;
+                    	if(id.equals("0"))
+                    	{
+                    		Toast.makeText(getApplicationContext(), "Invalid Login", Toast.LENGTH_SHORT).show();
+                    	}
+                    	else
+                    	{
+	                    	Intent i = new Intent(MainActivity.this, EditAcctActivity.class);
+	                        i.putExtra("id",r);
+	                        startActivity(i);
+                    	}
+
                 	}catch(Exception e)
                 	{
                 		e.printStackTrace();
@@ -46,12 +54,12 @@ public class MainActivity extends Activity {
                 }
             }
         });
-        final Button CreateButton = (Button) findViewById(R.id.loginButton);
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        
+        final Button CreateButton = (Button) findViewById(R.id.newUserButton);
+        CreateButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-            	Intent i = new Intent(this, CreateAcctActivity.class)
-                //intent.putExtra(EXTRA_MESSAGE, message);
-                startActivity(i);
+            	Intent i = new Intent(MainActivity.this, CreateAcctActivity.class);
+            	startActivity(i);
             }
             	
         });

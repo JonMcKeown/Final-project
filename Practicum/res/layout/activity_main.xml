@@ -8,15 +8,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.mckeown.practicum.MainActivity" >
 
-    <Button
-        android:id="@+id/loginButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="263dp"
-        android:text="@string/loginButton" />
-
     <EditText
         android:id="@+id/userNameField"
         android:layout_width="wrap_content"
@@ -40,5 +31,25 @@
         android:ems="10"
         android:inputType="textPassword"
         android:text="@string/password" />
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/passwordField"
+        android:layout_marginLeft="95dp"
+        android:layout_marginTop="110dp"
+        android:text="@string/loginButton" />
+
+    <Button
+        android:id="@+id/newUserButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/loginButton"
+        android:layout_alignBottom="@+id/loginButton"
+        android:layout_marginLeft="69dp"
+        android:layout_toRightOf="@+id/loginButton"
+        android:text="@string/newUserButton" />
 
 </RelativeLayout>

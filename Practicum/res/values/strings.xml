@@ -9,5 +9,22 @@
     <string name="password">password</string>
     <string name="title_activity_create_acct">CreateAcctActivity</string>
     <string name="title_activity_edit_acct">EditAcctActivity</string>
+    <string name="NewUserButton"></string>
+    <string name="newUserButton">New User</string>
+    <string name="createUserName">User Name</string>
+    <string name="createPassword">Password</string>
+    <string name="createAge">Age</string>
+    <string name="createEmail">Email</string>
+    <string name="createPhoneNbr">Phone Number</string>
+    <string name="createFirst">First Name</string>
+    <string name="createLast">Last Name</string>
+    <string name="createNewUserButton">Create User</string>
+    <string name="deleteUser">Delete User</string>
+    <string name="updateUser">Update User</string>
+    <string name="editAge">Age</string>
+    <string name="editEmail">Email</string>
+    <string name="editPhoneNbr">Phone Number</string>
+    <string name="editFirst">First Name</string>
+    <string name="editLast">Last Name</string>
 
 </resources>

@@ -70,4 +70,13 @@
         android:layout_toRightOf="@+id/deleteUserButton"
         android:text="@string/updateUser" />
 
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/updateUserButton"
+        android:layout_alignRight="@+id/updateUserButton"
+        android:layout_below="@+id/updateUserButton"
+        android:text="@string/logout" />
+
 </RelativeLayout>

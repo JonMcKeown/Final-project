@@ -40,6 +40,7 @@ public class EditAcctActivity extends Activity {
 			e.printStackTrace();
 		}		
 
+		
 		String age = user.getProperty(0).toString();
 		String email = user.getProperty(1).toString();
 		String phoneNbr = user.getProperty(6).toString();
@@ -75,6 +76,16 @@ public class EditAcctActivity extends Activity {
                 dialog.cancel();
             }
         });
+        
+        final Button logout = (Button) findViewById(R.id.logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	  finish();
+
+            }
+            	
+        });
+        
         builder1.setNegativeButton("No",
                 new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
@@ -92,6 +103,8 @@ public class EditAcctActivity extends Activity {
             }
             	
         });
+        
+
         
         final Button updateButton = (Button) findViewById(R.id.updateUserButton);
         updateButton.setOnClickListener(new View.OnClickListener() {

@@ -26,5 +26,6 @@
     <string name="editPhoneNbr">Phone Number</string>
     <string name="editFirst">First Name</string>
     <string name="editLast">Last Name</string>
+    <string name="logout">Logout</string>
 
 </resources>

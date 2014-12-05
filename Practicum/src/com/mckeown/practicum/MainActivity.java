@@ -25,6 +25,8 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		final Button loginButton = (Button) findViewById(R.id.loginButton);
+		final EditText userName = (EditText) findViewById(R.id.userNameField); 
+    	final EditText pass = (EditText) findViewById(R.id.passwordField); 
         loginButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	EditText userName = (EditText) findViewById(R.id.userNameField); 
@@ -45,6 +47,8 @@ public class MainActivity extends Activity {
 	                    	Intent i = new Intent(MainActivity.this, EditAcctActivity.class);
 	                        i.putExtra("id",r);
 	                        startActivity(i);
+	                        userName.setText("User Name");
+                    		pass.setText("password");
                     	}
 
                 	}catch(Exception e)
@@ -55,11 +59,27 @@ public class MainActivity extends Activity {
             }
         });
         
+        userName.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	userName.setText("");
+            }
+            	
+        });
+        
+        pass.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	pass.setText("");
+            }
+            	
+        });
+        
         final Button CreateButton = (Button) findViewById(R.id.newUserButton);
         CreateButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	Intent i = new Intent(MainActivity.this, CreateAcctActivity.class);
             	startActivity(i);
+            	userName.setText("User Name");
+        		pass.setText("password");
             }
             	
         });

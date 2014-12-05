@@ -25,7 +25,7 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f080013;
+        public static final int action_settings=0x7f080014;
         public static final int createAge=0x7f080002;
         public static final int createEmail=0x7f080007;
         public static final int createFirst=0x7f080004;
@@ -40,11 +40,12 @@ public final class R {
         public static final int editFirst=0x7f08000b;
         public static final int editLast=0x7f08000c;
         public static final int editPhoneNbr=0x7f08000a;
-        public static final int loginButton=0x7f080010;
-        public static final int newUserButton=0x7f080012;
-        public static final int passwordField=0x7f080011;
+        public static final int loginButton=0x7f080011;
+        public static final int logout=0x7f08000f;
+        public static final int newUserButton=0x7f080013;
+        public static final int passwordField=0x7f080012;
         public static final int updateUserButton=0x7f08000e;
-        public static final int userNameField=0x7f08000f;
+        public static final int userNameField=0x7f080010;
     }
     public static final class layout {
         public static final int activity_create_acct=0x7f030000;
@@ -76,6 +77,7 @@ public final class R {
         public static final int editPhoneNbr=0x7f050016;
         public static final int hello_world=0x7f050001;
         public static final int loginButton=0x7f050003;
+        public static final int logout=0x7f050019;
         public static final int newUserButton=0x7f050009;
         public static final int password=0x7f050005;
         public static final int title_activity_create_acct=0x7f050006;
